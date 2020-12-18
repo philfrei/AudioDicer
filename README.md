@@ -66,7 +66,7 @@ Publicly accessible properties:
 
   SINE: uses a sine function to maintain relatively stable power levels over the course of the transition, and is thus the smoothest sounding of the three options.  
 
-* *volume*: 	real-time volume control, double value ranging 0 to 1
+* *volume*: 	real-time volume control, `double` value ranging 0 to 1
 
   ```java
   audioDicer.setVolume(0.7);
@@ -89,19 +89,19 @@ Playing audio from the **AudioDicer** is achieved by reading *byte* arrays and f
 	sourceDataLine.write(byteBuffer, 0, n);
 ```
 
-The usual practices for playing back via `SourceDataLine` apply. The above two lines should execute in their own thread, within a `while` loop or the equivalent. Note that the common pattern used when shipping data from an `AudioInputStream` to a `SourceDataLine`:`while(n = audioDicer.read(buffer) != -1)` would not be very helpful, as a functioning `AudioDicer` will always return the same number of bytes and never reach an end point.
+The usual practices for playing back via `SourceDataLine` apply. The above two lines should execute in their own thread, within a `while` loop or the equivalent. Note that the common pattern used when shipping data from an `AudioInputStream`:`while(n = audioDicer.read(buffer) != -1)` would not be very helpful, as a functioning `AudioDicer` will always return the same number of bytes and never reach an end point. Consider, instead using `true` or a loosely coupled `boolean` (see the example code provided for one possibility).
 
 ### Example code
 
-A usage example, with a Swing GUI is provided in the example directory, along with two assets: a brook and an organ chord that glissandos upwards over the range of an octave.
+A [usage example](https://github.com/philfrei/AudioDicer/blob/master/src/example/AudioDicerExampleGUI.java), with a Swing GUI is provided in the example directory, along with sample assets: a brook, filtered brownian noise, and an organ chord that glissandos upwards over the range of an octave.
 
 ### Some more usage ideas
 
 Using the two cues and the example code provided, I'd like to point out some interesting ways to use the **AudioDicer** that might not be readily apparent.
 
-With the *brook* cue, try making three or four instances, and pitch them at 0.25, 0.5, 1, and 2. When playing them back at the same time, the brook becomes a much larger torrent. By varying the relative volumes, 3D distance rolloff can be emulated.
+With the *brook* cue, try making three or four instances, and pitch them at 0.25, 0.5, 1, and 2. When playing them back at the same time, the brook becomes a much larger torrent. By varying the relative volumes (the greater the distance, the stronger the slower-pitched instances relative to the higher), 3D-distance rolloff can be emulated.
 
-With the *chordgliss* cue, a classic, cartoonish "computer thinking" effect can be made by making the slice size 4000 and the overlap 1000. The "thinking" can be come more "excited" by slightly raising the pitch speed. The random notes that are played back will range within the single octave gliss I recorded. A wider range of random notes can be set as the source by recording a gliss that ranges over more pitches.
+With the *chordgliss* cue, a classic, cartoonish "computer thinking" effect can be made by making the slice size 4000 and the overlap 1000. The "thinking" can become more "excited" dynamically, by slightly raising the pitch speed. The random notes that are played back will range within the single octave gliss I recorded. A wider range of random notes can be set as the source by recording a gliss that ranges over more pitches.
 
 Another use to consider would be obtaining a short (a few seconds) segment of noise from the sound generators provided by Audacity, filtered to emphasize a given pitch area. *Brown noise* filtered to low frequencies (100-400 Hz region) can be quite useful ingredient to a sound scape. Then, `AudioDicer`'s volume and pitch capabilities can be used to dynamically alter the sound in real time based on game state (e.g., are we approaching a waterfall). Interesting noise-sculpting possibilities suggest themselves.
 
@@ -111,7 +111,7 @@ For the moment, I'm punting on adding provisions to handle panning. It's not cle
 
 ### Licensing
 
-This code has a BSD License. There is no charge for its use. But if you do use it, I'd sure like to know about it and am fully willing to provide links to products that make use of this code.
+This code has a BSD License. There is no charge for the use of this code. But if you do use it, I'd sure like to know about it and would be happy to provide links in this README to projects that make use of this code!
 
 ### Contact
 
