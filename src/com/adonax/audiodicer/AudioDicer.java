@@ -191,9 +191,6 @@ public class AudioDicer {
 		int bytesRead = 0;
 		int pcmIdx = 0;
 		
-//		System.out.println("Tracks: " + numberOfTracks + " set to " + tracks);
-//		System.out.println("Framelength: " + audioFrames);
-		
 		while((bytesRead = ais.read(readBuffer, 0, READ_BUFFER_SIZE)) != -1) {
 			
 			int ii = 0;
@@ -267,7 +264,7 @@ public class AudioDicer {
 		
 	public double getSpeed() { return cursor.speed;	}
 
-	// keeps all mutable values for the read cursor together
+	// Intention: keep all mutable values for the read cursor together.
 	// TODO QUESTION: should countdown vars also be here? Maybe so!
 	private class Cursor {
 		float idxA, idxB;
@@ -360,15 +357,15 @@ public class AudioDicer {
 				// values for the slicing operation.
 				if (overlap != newOverlap) {
 					overlap = newOverlap;
-					System.out.println("new overlap: " + overlap);
+//					System.out.println("new overlap: " + overlap);
 				}
 				if (sliceSize != newSliceSize) {
 					sliceSize = newSliceSize;
-					System.out.println("new slicesize: " + sliceSize);
+//					System.out.println("new slicesize: " + sliceSize);
 				}
 				if (crossfadeMode != newCfMode) {
 					crossfadeMode = newCfMode;
-					System.out.println("new crossfade: " + crossfadeMode.name());
+//					System.out.println("new crossfade: " + crossfadeMode.name());
 				}
 				
 				countdownIdx = overlap;

@@ -245,7 +245,7 @@ final class AudioDicerGUI_wSliders extends JFrame {
 		c.gridx = 1;
 		c.gridwidth = 2;
 		panel.add(speedSlider, c);
-//
+
 		c.gridx = 0;
 		c.gridy = 3;
 		c.gridwidth = 1;
@@ -275,8 +275,6 @@ final class AudioDicerGUI_wSliders extends JFrame {
 		c.gridx = 2;
 		panel.add(rbCrossFadeSine, c);
 		
-		
-		
 		add(panel);
 		pack();
 		setLocationRelativeTo(null);		
@@ -305,7 +303,6 @@ class DemoPlayer_adv implements Runnable {
 	}
 	public boolean getPlaying() { return playing; }
 	
-	
 	public DemoPlayer_adv(AudioDicer slicedAudioStreamer) {
 		this.slicedAudioStreamer = slicedAudioStreamer;
 		try {
@@ -319,18 +316,11 @@ class DemoPlayer_adv implements Runnable {
 		silence = new byte[BYTE_BUFFER_SIZE];
 	}
 	
-	boolean prevPlaying = false;
 	@Override
 	public void run() 
 	{
 		while(true)
 		{
-			if (playing != prevPlaying)
-			{
-				prevPlaying = playing;
-				System.out.println("playing toggled in run()");
-			}
-			
 			if (playing) 
 			{
 				int n = slicedAudioStreamer.read(byteBuffer);
@@ -343,7 +333,7 @@ class DemoPlayer_adv implements Runnable {
 		}
 	}
 
-	//////////// UTILITIES /////////////////
+	//////////// UTILITIES ////////////
 	private SourceDataLine getSourceDataLine() throws LineUnavailableException
 	{
 		AudioFormat audioFmt = new AudioFormat(
