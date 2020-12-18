@@ -89,7 +89,12 @@ Playing audio from the **AudioDicer** is achieved by reading *byte* arrays and f
 	sourceDataLine.write(byteBuffer, 0, n);
 ```
 
-The usual practices for playing back via `SourceDataLine` apply. The above two lines should execute in their own thread, within a `while` loop or the equivalent. Note that the common pattern used when shipping data from an `AudioInputStream`:`while(n = audioDicer.read(buffer) != -1)` would not be very helpful, as a functioning `AudioDicer` will always return the same number of bytes and never reach an end point. Consider, instead using `true` or a loosely coupled `boolean` (see the example code provided for one possibility).
+The usual practices for playing back via `SourceDataLine` apply. The above two lines should execute in their own thread, within a `while` loop or the equivalent. Note that the common pattern used when shipping data from an `AudioInputStream`:
+
+```java
+	while(n = audioDicer.read(buffer) != -1) // OK but questionable
+```
+might not be very helpful, as a functioning `AudioDicer` will always return the same number of bytes and never reach an end point. Consider, instead using `true` or a loosely coupled `boolean` (see the example code provided for one possibility).
 
 ### Example code
 
