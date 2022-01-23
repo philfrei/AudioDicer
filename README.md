@@ -1,6 +1,6 @@
 ﻿# AudioDicer
 
-NOTE: This project is undergoing development and is not to be trusted for production.
+NOTE: This project is undergoing development and is not ready for production.
 
 **AudioDicer** is a Java Class built to efficiently produce a continuously varying sound stream from a small sound asset. In creating soundscapes, there is often a need for a continuous sound, for example, a flowing brook, or a crackling campfire. Continuous playback is typically achieved by looping a sound asset. If the loop is too short, the repetition can become annoyingly apparent to the User. To prevent this, longer sound files are used, but the memory costs of doing so can quickly add up.
 
